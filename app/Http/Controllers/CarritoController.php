@@ -16,11 +16,9 @@ class CarritoController extends Controller
      */
     public function index()
     {
-        /*$datos['carritos'] = Carrito::paginate(10);
+        $datos['carritos'] = Carrito::paginate(10);
         $productos = Producto::all();
-        return view('carrito.index',$datos,compact('productos'));*/
-        /*asa
-        */
+        return view('carrito.index',$datos,compact('productos'));
     }
 
     /**
