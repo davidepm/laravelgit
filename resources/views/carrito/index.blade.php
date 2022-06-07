@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container row mx-auto">
 
 
 @if(Session::has('mensaje'))
@@ -11,10 +11,22 @@
     <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert">
     </button>
     </div>
-    @endif
+@endif
+@if(Session::has('mensaje2'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+
+        {{ Session::get('mensaje2') }}
+
+    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert">
+    </button>
+    </div>
+@endif
 
 
+<div>
     <a href="{{ url('carrito/create') }}" class="btn btn-success">Agregar Nuevo</a>
+</div>
+
     <br><br>
     <table class="table table-light">
         <thead class="thead-light">
@@ -50,32 +62,13 @@
             @endforeach
         </tbody>
     </table>
-    <br></br>
-    <h1>Datos Orden</h1>
 <br></br>
-    <table class="table table-light">
-        <thead class="thead-light">
-            <tr>
-                <td>Usuario</td>
-                <td>Medio de Pago</td>
-                <td>Total</td>
-                <td>Accion</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ auth()->user()->name }}</td>
-                <td>Efectivo</td>
-                <td>$</td>
-                <td>
-                    <a class="btn btn-success" href="">
-                            Crear Orden
-                    </a>
-                </td>
-            </tr>
-        </tbody>
+<div class="btn-group mb-3 col-12 flex justify-content-end">
+    <div class="col-4 d-flex justify-content-end">
+        <a type="button" class="btn btn-primary" aria-label="Input group example" href="{{ url('orden/create') }}">Crear</a>
+    </div>
+</div>
 
-    </table>
     {!! $carritos->links() !!}
 </div>
 @endsection

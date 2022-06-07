@@ -17,6 +17,7 @@ class OrdenController extends Controller
      */
     public function index()
     {
+
         $datos['ordenes'] = Orden::paginate();
 
         $datos2['empleados'] = Empleado::paginate();
@@ -31,13 +32,21 @@ class OrdenController extends Controller
      */
     public function create()
     {
+        $user='';
+        if(isset(auth()->user()->name)){
+            $user = auth()->user()->name;
+        }
         $suma = 0;
         $datos2 = Carrito::all();
         foreach($datos2 as $key){
             $suma += $key['total'];
         }
-        return view('orden.create',compact('suma'));
 
+        if($user == ''){
+            return redirect('carrito')->with('mensaje2','Primero debe Iniciar Sesion');
+        }else{
+            return view('orden.create',compact('suma','user'));
+        }
     }
 
     /**
@@ -49,15 +58,7 @@ class OrdenController extends Controller
     public function store(Request $request)
     {
 
-
-
-
-      /*  Orden::create([
-            'estado' => 'pagado',
-            'fecha' => $fecha,
-            'medioPago' => 'efectivo',
-            'customer_id' => $id
-        ]);*/
+        dd("david");
 
     }
 
